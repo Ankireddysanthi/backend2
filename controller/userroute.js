@@ -10,7 +10,7 @@ userroute.post("/reg", async (req, res) => {
   const existmail = await Usermodle.findOne({ email })
   try {
     if (existmail) {
-      res.send("already exit")
+      res.send({msg:"already exit"})
     } else {
       bcrypt.hash(pass, 5, async (err, hash) => {
         const user = new Usermodle({ username, email, pass: hash });
