@@ -10,10 +10,11 @@ gamesroute.get("/all",auth,async(req,res)=>{
    // console.log(decoded)
     try {
         let data=await gamemodel.find({"userid":req.body.userid});
-        res.send(data)
+        if(data.length!=0) res.send(data);
+        else res.send({"msg":"No Data"})
         
     } catch (error) {
-        res.send("erroe")
+        res.send({msg:"error msg"})
     }
 })
 gamesroute.post("/add",auth,async(req,res)=>{
